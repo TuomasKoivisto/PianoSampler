@@ -1,0 +1,23 @@
+{
+  "name": "pianosampler-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/TuomasKoivisto/pianosampler-frontend.git"
+  },
+  "author": "Tuomas Koivisto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/TuomasKoivisto/pianosampler-frontend/issues"
+  },
+  "homepage": "https://gitlab.com/TuomasKoivisto/pianosampler-frontend#README",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}

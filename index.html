@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+      <title>Piano Sampler</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+      <!-- JQuery UI -->
+    <link rel="stylesheet" href="css/jquery-ui.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+  </head>
+
+  <body>
+
+  <img class="bg" src="img/abstract-background.jpg" alt="">
+
+  <div class="float-right">
+
+   <div id="user-loggedIn" class="margin">
+    </div>
+
+    </div>
+
+   <div class="container text-align-center">
+
+    <div class="clear"></div>
+
+    <h1>Piano Sampler <i class="fa fa-music" aria-hidden="true"></i></h1>
+
+    <p id="testi"></p>
+    <div class="clear"></div>
+
+    <div class="margin-top"></div>
+
+   <div id="content-container">
+
+    <div id="edge" class="center">
+       <div class="C" onclick="playC()">
+            <div class="long float"></div>
+        </div>
+
+        <div class="Csharp" onclick="playCsharp()">
+            <div class="long-dark float"></div>
+        </div>
+
+        <div class="D" onclick="playD()">
+            <div class="long float"></div>
+        </div>
+
+        <div class="Dsharp" onclick="playDsharp()">
+            <div class="long-dark float"></div>
+        </div>
+
+        <div class="E" onclick="playE()">
+            <div class="long float"></div>
+        </div>
+
+        <div class="F" onclick="playF()">
+            <div class="long float"></div>
+        </div>
+
+        <div class="Fsharp" onclick="playFsharp()">
+            <div class="long-dark float"></div>
+        </div>
+
+        <div class="G" onclick="playG()">
+            <div class="long float"></div>
+        </div>
+
+        <div class="Gsharp" onclick="playGsharp()">
+            <div class="long-dark float"></div>
+        </div>
+
+        <div class="A" onclick="playA()">
+            <div class="long float"></div>
+        </div>
+
+        <div class="Asharp" onclick="playAsharp()">
+            <div class="long-dark float"></div>
+        </div>
+
+        <div class="H" onclick="playH()">
+            <div class="long float no-right-border"></div>
+        </div>
+
+        <div class="C" onclick="playC()">
+            <div class="short float"></div>
+        </div>
+
+        <div class="D" onclick="playD()">
+            <div class="short float"></div>
+        </div>
+
+        <div class="E" onclick="playE()">
+            <div class="short float"></div>
+        </div>
+
+        <div class="F" onclick="playF()">
+            <div class="short float"></div>
+        </div>
+
+        <div class="G" onclick="playG()">
+            <div class="short float"></div>
+        </div>
+
+        <div class="A" onclick="playA()">
+            <div class="short float"></div>
+        </div>
+
+        <div class="H" onclick="playH()">
+            <div class="short float no-right-border"></div>
+        </div>
+
+       </div>
+
+       <div class="margin-top"></div>
+
+
+       <div id="slider" class="center">
+
+            <div id="custom-handle" class="ui-slider-handle"></div>
+
+       </div>
+
+       <div class="margin-top"></div>
+
+       <div class="container" id="record-replay-container">
+        <div class="row">
+          <div class="col">
+            <button id="record-button" class="not-recording"><div id="arrow"></div></button><span id="recording-text" class="margin-left">Recording...</span>
+          </div>
+          <div class="col">
+            <button id="replay" class="not-playing btn btn-primary" disabled>Replay</button>
+          </div>
+        </div>
+
+       </div>
+
+
+       <div class="footer">&copy; 2018 Tuomas Koivisto</div>
+    </div>
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script
+  src="js/jquery-3.2.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+     <!-- JQuery UI -->
+    <script src="js/jquery-ui.js"></script>
+      <!--<script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/4.0/1/MicrosoftAjax.js"></script> -->
+
+    <script type="text/javascript" src="js/main.js"></script>
+
+    <script type="text/javascript">
+var sekunnit = 0;
+var timer = null;
+var sample = [];
+var sampleDuration = null;
+var noteObject = {};
+
+function pushNoteObject(noteName) {
+  noteObject = {
+    note: noteName,
+    moment: sekunnit
+  };
+  sample.push(noteObject);
+}
+
+$('.C').click(function() {
+  if (timer != null) {
+    pushNoteObject('Cplain');
+    console.log(sample[0].moment);
+  }
+});
+
+$('.Csharp').click(function() {
+  if (timer != null) {
+    pushNoteObject('Csharp');
+  }
+});
+
+$('.D').click(function() {
+  if (timer != null) {
+    pushNoteObject('Dplain');
+  }
+});
+
+$('.Dsharp').click(function() {
+  if (timer != null) {
+    pushNoteObject('Dsharp');
+  }
+});
+
+$('.E').click(function() {
+  if (timer != null) {
+    pushNoteObject('Eplain');
+  }
+});
+
+$('.F').click(function() {
+  if (timer != null) {
+    pushNoteObject('Fplain');
+  }
+});
+
+$('.Fsharp').click(function() {
+  if (timer != null) {
+    pushNoteObject('Fsharp');
+  }
+});
+
+$('.G').click(function() {
+  if (timer != null) {
+    pushNoteObject('Gplain');
+  }
+});
+
+$('.Gsharp').click(function() {
+  if (timer != null) {
+    pushNoteObject('Gsharp');
+  }
+});
+
+$('.A').click(function() {
+  if (timer != null) {
+    pushNoteObject('Aplain');
+  }
+});
+
+$('.Asharp').click(function() {
+  if (timer != null) {
+    pushNoteObject('Asharp');
+  }
+});
+
+$('.H').click(function() {
+  if (timer != null) {
+    pushNoteObject('Hplain');
+  }
+});
+
+$('#record-button').click(function() {
+  if ($(this).hasClass('not-recording') == true) {
+    sample = [];
+    sampleDuration = null;
+    $('#replay').prop('disabled', true);
+    $(this).css('border-color', 'rgb(50,50,50)');
+    $(this).css('background-color', 'rgb(255,0,0)');
+    $('#recording-text').css('visibility', 'visible');
+    $('#arrow').css('border-left-color', 'rgb(0,0,0)');
+
+    timer = setInterval(function() {
+      sekunnit += 0.1;
+    }, 100);
+
+    $(this).addClass('recording');
+    $(this).removeClass('not-recording');
+  } else {
+    $(this).css('border-color', 'grey');
+    $(this).css('background-color', 'rgb(255,120,120)');
+    $('#recording-text').css('visibility', 'hidden');
+    $('#arrow').css('border-left-color', 'grey');
+
+    $.each(sample, function(key, value) {
+      console.log(key + ': ' + value);
+    });
+
+    clearInterval(timer);
+    timer = null;
+    console.log(sekunnit);
+    sampleDuration = sekunnit;
+    console.log('samplen kesto ' + sampleDuration + 's');
+    sekunnit = 0;
+    $(this).removeClass('recording');
+    $(this).addClass('not-recording');
+    $('#replay').prop('disabled', false);
+  }
+});
+var aika = 0;
+//sample-objektin läpikäymiseksi
+var nextNoteIndex = 0;
+var replay = null;
+
+$('#replay').click(function() {
+  aika = 0;
+  nextNoteIndex = 0;
+  if ($('#replay').hasClass('not-playing')) {
+    $('#replay').addClass('playing btn-danger');
+    $('#replay').removeClass('not-playing btn-primary');
+    $('#replay').html('Stop');
+
+    replay = setInterval(function() {
+      aika += 0.1;
+      if (aika >= sampleDuration && $('#replay').hasClass('playing')) {
+        console.log('toisto loppui');
+        $('#replay').removeClass('playing btn-danger');
+        $('#replay').addClass('not-playing btn-primary');
+        $('#replay').html('Replay');
+        clearInterval(replay);
+      }
+
+      if (sample[nextNoteIndex] !== undefined) {
+        if (
+          sample[nextNoteIndex].moment <= aika &&
+          $('#replay').hasClass('playing')
+        ) {
+          switch (sample[nextNoteIndex].note) {
+            case 'Cplain':
+              playC();
+              break;
+            case 'Csharp':
+              playCsharp();
+              break;
+            case 'Dplain':
+              playD();
+              break;
+            case 'Dsharp':
+              playDsharp();
+              break;
+            case 'Eplain':
+              playE();
+              break;
+            case 'Fplain':
+              playF();
+              break;
+            case 'Fsharp':
+              playFsharp();
+              break;
+            case 'Gplain':
+              playG();
+              break;
+            case 'Gsharp':
+              playGsharp();
+              break;
+            case 'Aplain':
+              playA();
+              break;
+            case 'Asharp':
+              playAsharp();
+              break;
+            case 'Hplain':
+              playH();
+              break;
+          }
+
+          if (nextNoteIndex < sample.length) {
+            nextNoteIndex += 1;
+          }
+        }
+      }
+    }, 100);
+  } else {
+    clearInterval(replay);
+    $('#replay').removeClass('playing btn-danger');
+    $('#replay').addClass('not-playing btn-primary');
+    $('#replay').html('Replay');
+    console.log('toisto pysäytetty');
+  }
+});
+</script>
+
+  </body>
+
+
+
+
+
+
+
+
+
+</html>
