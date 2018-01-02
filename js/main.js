@@ -184,7 +184,7 @@ $(function() {
 function initOscillator(freq) {
   osc = c.createOscillator();
   gainNode = c.createGain();
-  osc.frequency.value = freq;
+  osc.frequency.setValueAtTime(freq, c.currentTime);
   if (keyboardVolume > 0.2) {
     keyboardVolume = 0.2;
   }
