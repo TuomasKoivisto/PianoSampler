@@ -179,7 +179,6 @@ function pushNoteObject(noteName) {
 $('.C').click(function() {
   if (timer != null) {
     pushNoteObject('Cplain');
-    console.log(sample[0].moment);
   }
 });
 
@@ -271,15 +270,11 @@ $('#record-button').click(function() {
     $('#recording-text').css('visibility', 'hidden');
     $('#arrow').css('border-left-color', 'grey');
 
-    $.each(sample, function(key, value) {
-      console.log(key + ': ' + value);
-    });
+    $.each(sample, function(key, value) {});
 
     clearInterval(timer);
     timer = null;
-    console.log(sekunnit);
     sampleDuration = sekunnit;
-    console.log('samplen kesto ' + sampleDuration + 's');
     sekunnit = 0;
     $(this).removeClass('recording');
     $(this).addClass('not-recording');
@@ -302,7 +297,6 @@ $('#replay').click(function() {
     replay = setInterval(function() {
       aika += 0.1;
       if (aika >= sampleDuration && $('#replay').hasClass('playing')) {
-        console.log('toisto loppui');
         $('#replay').removeClass('playing btn-danger');
         $('#replay').addClass('not-playing btn-primary');
         $('#replay').html('Replay');
@@ -364,7 +358,6 @@ $('#replay').click(function() {
     $('#replay').removeClass('playing btn-danger');
     $('#replay').addClass('not-playing btn-primary');
     $('#replay').html('Replay');
-    console.log('toisto pysäytetty');
   }
 });
 </script>

@@ -77,16 +77,6 @@ $('#login-username').focusout(function() {
   var username = $('#login-username').val();
   verify_register_username(username);
 });
-/*
-        $('#password').focus(function() {
-            error.dequeue();
-            error.hide();
-            error.css('color', 'yellow');
-            error.fadeIn(200);
-            error.html("<p>Password must be at least six characters long</p>");
-            error.delay(5000).fadeOut(200);
-            console.log("sajfasifa");
-        }); */
 
 $('#password').keyup(function() {
   if ($('#password').val().length >= 6 && $('.username').val().length > 0) {
@@ -253,29 +243,3 @@ function playAsharp() {
 function playH() {
   initOscillator(493.883);
 }
-
-/*
-     $("#record-button").click(function () {
-
-        if ($(this).css('background-color') == 'rgb(255,120,120)') {
-
-            $(this).css('border-color', 'rgb(50,50,50)');
-            $(this).css('background-color', 'rgb(255,0,0)');
-            $('#recording-text').css('visibility', 'visible');
-            $('#arrow').css('border-left-color', 'rgb(0,0,0)');
-
-
-
-
-
-
-        }  else {
-
-            $(this).css('border-color', 'grey');
-            $(this).css('background-color', 'rgb(255,120,120)');
-            $('#recording-text').css('visibility', 'hidden');
-            $('#arrow').css('border-left-color', 'grey');
-
-
-        }
-      }); */
