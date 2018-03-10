@@ -182,7 +182,7 @@ $(function() {
 });
 
 function initOscillator(freq) {
-  osc = c.createOscillator();
+  var osc = c.createOscillator();
   gainNode = c.createGain();
   osc.frequency.setValueAtTime(freq, c.currentTime);
   if (keyboardVolume > 0.2) {
